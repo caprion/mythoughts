@@ -80,3 +80,82 @@ body {
 .prose hr {
   @apply my-8 border-gray-200;
 }
+
+/* Callout/Annotation Styles */
+.callout {
+  @apply my-6 rounded-lg border-l-4 overflow-hidden;
+}
+
+.callout-title {
+  @apply flex items-center gap-2 px-4 py-2 font-semibold text-sm;
+}
+
+.callout-icon {
+  @apply text-base;
+}
+
+.callout-label {
+  @apply uppercase tracking-wide;
+}
+
+.callout-content {
+  @apply px-4 pb-4 text-gray-700;
+}
+
+.callout-content p:last-child {
+  @apply mb-0;
+}
+
+/* Highlight - yellow/amber for important passages */
+.callout-highlight {
+  @apply border-amber-400 bg-amber-50;
+}
+
+.callout-highlight .callout-title {
+  @apply bg-amber-100 text-amber-800;
+}
+
+/* Note - blue for general annotations */
+.callout-note {
+  @apply border-blue-400 bg-blue-50;
+}
+
+.callout-note .callout-title {
+  @apply bg-blue-100 text-blue-800;
+}
+
+/* Question - purple for things to explore */
+.callout-question {
+  @apply border-purple-400 bg-purple-50;
+}
+
+.callout-question .callout-title {
+  @apply bg-purple-100 text-purple-800;
+}
+
+/* Insight - green for personal realizations */
+.callout-insight {
+  @apply border-green-400 bg-green-50;
+}
+
+.callout-insight .callout-title {
+  @apply bg-green-100 text-green-800;
+}
+
+/* Warning - red for cautions/disagreements */
+.callout-warning {
+  @apply border-red-400 bg-red-50;
+}
+
+.callout-warning .callout-title {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Tip - teal for actionable advice */
+.callout-tip {
+  @apply border-teal-400 bg-teal-50;
+}
+
+.callout-tip .callout-title {
+  @apply bg-teal-100 text-teal-800;
+}

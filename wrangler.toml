@@ -1,6 +1,0 @@
-# Cloudflare Pages Configuration
-# https://developers.cloudflare.com/pages/configuration/wrangler-configuration/
-
-name = "timelessinsights"
-compatibility_date = "2024-01-01"
-pages_build_output_dir = "site/dist"

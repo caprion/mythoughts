@@ -5,8 +5,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
       <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-2xl font-serif italic text-purple-700">ti</span>
-          <span className="text-lg font-medium text-gray-900">TimelessInsights</span>
+          <span className="text-2xl font-serif italic text-purple-700">mt</span>
+          <span className="text-lg font-medium text-gray-900">mythoughts</span>
         </Link>
         
         <nav className="flex items-center gap-6">

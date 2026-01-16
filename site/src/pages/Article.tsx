@@ -1,9 +1,94 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown, { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Header from '../components/Header';
 import Tag from '../components/Tag';
+
+// Callout type configuration
+const CALLOUT_TYPES: Record<string, { icon: string; label: string; className: string }> = {
+  highlight: { icon: '✨', label: 'Highlight', className: 'callout-highlight' },
+  note: { icon: '📝', label: 'Note', className: 'callout-note' },
+  question: { icon: '❓', label: 'Question', className: 'callout-question' },
+  insight: { icon: '💡', label: 'Insight', className: 'callout-insight' },
+  warning: { icon: '⚠️', label: 'Warning', className: 'callout-warning' },
+  tip: { icon: '💡', label: 'Tip', className: 'callout-tip' },
+};
+
+// Custom blockquote component that handles callout syntax
+function CalloutBlockquote({ children }: { children?: ReactNode }) {
+  // Extract text content from children to detect callout syntax
+  const childArray = Array.isArray(children) ? children : [children];
+  
+  // Look for callout pattern in the first paragraph
+  const firstChild = childArray[0];
+  if (firstChild && typeof firstChild === 'object' && 'props' in firstChild) {
+    const firstParagraph = firstChild.props?.children;
+    const textContent = extractTextContent(firstParagraph);
+    
+    // Match [!type] or [!type]+ (collapsible) pattern
+    const calloutMatch = textContent?.match(/^\[!(\w+)\](\+)?\s*/);
+    
+    if (calloutMatch) {
+      const calloutType = calloutMatch[1].toLowerCase();
+      const config = CALLOUT_TYPES[calloutType];
+      
+      if (config) {
+        // Remove the callout marker from the content
+        const cleanContent = removeCalloutMarker(childArray, calloutMatch[0]);
+        
+        return (
+          <div className={`callout ${config.className}`}>
+            <div className="callout-title">
+              <span className="callout-icon">{config.icon}</span>
+              <span className="callout-label">{config.label}</span>
+            </div>
+            <div className="callout-content">
+              {cleanContent}
+            </div>
+          </div>
+        );
+      }
+    }
+  }
+  
+  // Regular blockquote
+  return <blockquote>{children}</blockquote>;
+}
+
+// Helper to extract text content from React nodes
+function extractTextContent(node: ReactNode): string {
+  if (typeof node === 'string') return node;
+  if (typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(extractTextContent).join('');
+  if (node && typeof node === 'object' && 'props' in node) {
+    return extractTextContent(node.props.children);
+  }
+  return '';
+}
+
+// Helper to remove the callout marker from content
+function removeCalloutMarker(children: ReactNode[], marker: string): ReactNode[] {
+  return children.map((child, index) => {
+    if (index === 0 && child && typeof child === 'object' && 'props' in child) {
+      const childContent = child.props?.children;
+      if (typeof childContent === 'string') {
+        const newContent = childContent.replace(marker, '');
+        return { ...child, props: { ...child.props, children: newContent } };
+      }
+      if (Array.isArray(childContent)) {
+        const newChildContent = childContent.map((c, i) => {
+          if (i === 0 && typeof c === 'string') {
+            return c.replace(marker, '');
+          }
+          return c;
+        });
+        return { ...child, props: { ...child.props, children: newChildContent } };
+      }
+    }
+    return child;
+  });
+}
 
 interface Article {
   slug: string;
@@ -207,7 +292,12 @@ export default function Article() {
         
         {/* Article content */}
         <article className="prose prose-lg">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown 
+            remarkPlugins={[remarkGfm]}
+            components={{
+              blockquote: CalloutBlockquote as Components['blockquote'],
+            }}
+          >
             {article.content}
           </ReactMarkdown>
         </article>

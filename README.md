@@ -1,125 +1,41 @@
-# TimelessInsights
+# mythoughts
 
-A personal knowledge library for curated wisdom on mental models, decision-making, and clear thinking.
+A personal blog for ideas, reflections, and lessons learned.
 
-## Quick Start
+## Setup
 
 ```bash
-# Install dependencies
 npm install
+```
 
-# Add URLs to scrape
-# Edit input/urls.txt with article URLs
+## Development
 
-# Convert URLs to structured format
-npm run convert
-
-# Scrape articles
-npm run scrape
-
-# Start development server
+```bash
 npm run dev
-
-# Build for production
-npm run build
 ```
 
-## Workflow
+## Writing
 
-1. **Add URLs** — Drop URLs into `input/urls.txt` (one per line)
-2. **Convert** — Run `npm run convert` to add them to `sources.yaml`
-3. **Scrape** — Run `npm run scrape` to fetch and save as markdown
-4. **Browse** — Run `npm run dev` to view your library
+1. Create a new post in `content/`:
+   ```bash
+   cp content/_template.md content/my-post.md
+   ```
 
-## Project Structure
+2. Optional - enrich with AI metadata:
+   ```bash
+   npm run enrich -- --files my-post.md
+   ```
 
-```
-timelessinsights/
-├── input/               # Your URL inputs
-│   ├── urls.txt         # Quick add URLs here
-│   └── sources.yaml     # Structured source registry
-├── content/             # Scraped articles (markdown)
-├── config/              # Configuration files
-│   ├── auto-tags.yaml   # Auto-tagging rules
-│   ├── extractors.yaml  # Site-specific selectors
-│   └── site.yaml        # Site settings
-├── scripts/             # CLI tools
-├── site/                # React frontend
-└── public/              # Static assets
-```
+3. Build search index:
+   ```bash
+   npm run build:index
+   ```
 
-## Scripts
+## Deploy
 
-| Command | Description |
-|---------|-------------|
-| `npm run convert` | Convert urls.txt → sources.yaml |
-| `npm run scrape` | Scrape all pending URLs |
-| `npm run scrape:one -- <url>` | Scrape a single URL |
-| `npm run tag` | Re-apply auto-tagging rules |
-| `npm run build:index` | Generate search index |
-| `npm run dev` | Start dev server |
-| `npm run build` | Build for production |
+Push to GitHub → Cloudflare Pages auto-deploys.
 
-## Adding Content
-
-### Scrape from URL
-```bash
-npm run scrape:one -- "https://fs.blog/first-principles/"
-```
-
-### Personal Notes
-Create a markdown file directly in `content/`:
-
-```markdown
----
-title: "My Notes on Thinking"
-type: personal
-created_at: 2026-01-15
-tags: [thinking, personal]
----
-
-Your content here...
-```
-
-## Deployment
-
-The site is hosted on Cloudflare Pages and auto-deploys when you push to GitHub.
-
-### Adding New Content to Production
-
-```bash
-# 1. Add URLs and scrape
-echo "https://fs.blog/some-article/" >> input/urls.txt
-npm run convert
-npm run scrape
-
-# 2. Rebuild the search index
-npm run build:index
-
-# 3. Push to GitHub (triggers Cloudflare deploy)
-git add public/search-index.json
-git commit -m "Add new articles"
-git push
-```
-
-Cloudflare will automatically build and deploy within ~2 minutes.
-
-### Local Development
-
-```bash
-npm run dev          # Start dev server at localhost:5173
-npm run build        # Build for production (site/dist)
-npm run preview      # Preview production build locally
-```
-
-## Configuration
-
-### Auto-Tagging (`config/auto-tags.yaml`)
-Define rules to automatically tag articles based on URL patterns and content keywords.
-
-### Extractors (`config/extractors.yaml`)
-Define CSS selectors for extracting content from different websites.
-
----
-
-Built with ❤️ for clearer thinking.
+**Build settings:**
+- Build command: `npm run build`
+- Output directory: `site/dist`
+- Environment variables: `GEMINI_API_KEY`, `GROQ_API_KEY`

@@ -322,7 +322,7 @@ async function main() {
   if (SPECIFIC_FILES.length > 0) {
     // Filter to only specified files, force re-enrich them
     needsEnrichment = articleInfo
-      .filter(a => SPECIFIC_FILES.includes(a.name) && !a.enrichedToday)
+      .filter(a => SPECIFIC_FILES.includes(a.name) || SPECIFIC_FILES.includes(a.name + '.md'))
       .map(a => a.path);
     mode = 'specific';
   } else if (FORCE_ALL) {

@@ -1,0 +1,56 @@
+# Enrichment configuration
+# AI-powered content enrichment settings
+
+# Maximum content length in characters to send to the AI
+# Gemini 2.5 Flash: 1M tokens (~4M chars)
+# Llama 3.3 70B (Groq): 128K tokens (~500K chars)
+# Set conservatively to ~60K to fit full prompt + response with headroom
+max_content_length: 60000
+
+# Delay between API requests in milliseconds (rate limiting)
+delay_ms: 12000
+
+# Valid topics for classification
+topics:
+  - mental-models
+  - decision-making
+  - learning
+  - productivity
+  - investing
+  - psychology
+  - leadership
+  - communication
+
+# Enrichment prompt template
+# The article content will be appended after this prompt wrapped in triple quotes
+prompt: |
+  Extract metadata from the article below for a knowledge base.
+
+  Return ONLY valid JSON. No markdown. No explanation.
+
+  {
+    "summary": "Core principle in 1-2 sentences (20-50 words)",
+    "highlights": ["actionable takeaway 1", "actionable takeaway 2", "actionable takeaway 3"],
+    "topic": "mental-models|decision-making|learning|productivity|investing|psychology|leadership|communication",
+    "secondary_topic": "same options or null",
+    "related_concepts": ["kebab-case-concept-1", "kebab-case-concept-2"],
+    "scope": "When/where this insight applies (1 sentence)",
+    "anti_pattern": "How people commonly misapply this (1 sentence)"
+  }
+
+  RULES:
+  1. summary: State the mechanism, not a title restatement
+  2. highlights: Exactly 3. Each useful standalone.
+  3. topic: Pick ONE from the list
+  4. secondary_topic: Only if >30% content overlap, else null
+  5. related_concepts: 2-4 items, kebab-case
+  6. scope: Boundary condition for application
+  7. anti_pattern: Common misuse pattern
+
+  Before responding, verify:
+  - JSON is syntactically valid
+  - topic matches allowed list exactly
+  - highlights has exactly 3 items
+
+  ARTICLE:
+  """

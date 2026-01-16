@@ -77,7 +77,7 @@ function main() {
     return;
   }
   
-  const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
+  const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md') && !f.startsWith('_'));
   
   const articles: Article[] = [];
   const allTags = new Set<string>();

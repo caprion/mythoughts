@@ -1,38 +1,29 @@
 # Dependencies
 node_modules/
 
-# Build output
+# Build outputs
 site/dist/
+dist/
 
-# ===========================================
-# LOCAL ONLY - Not pushed to GitHub
-# ===========================================
-
-# Scraped content (your personal library)
-content/
-
-# URL inputs and source registry
-input/
-
-# Configuration files (local settings)
-config/
-
-# Planning docs
-docs/
-
-# ===========================================
-# Environment & System
-# ===========================================
+# Environment files (NEVER commit these!)
 .env
 .env.local
-.idea/
+.env.*.local
+
+# Editor
+.vscode/
 *.swp
 *.swo
+.idea/
+
+# OS
 .DS_Store
 Thumbs.db
-*.log
 
-# Lock files (use package-lock.json only)
-bun.lockb
-yarn.lock
-pnpm-lock.yaml
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary
+*.tmp
+*.temp
