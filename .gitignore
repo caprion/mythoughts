@@ -27,3 +27,7 @@ npm-debug.log*
 # Temporary
 *.tmp
 *.temp
+
+# Local utility scripts and docs
+scripts/sync-to-timelessinsights.ps1
+docs/SHARED_COMPONENTS.md
