@@ -14,9 +14,6 @@ content/
 # URL inputs and source registry
 input/
 
-# Scraping scripts (local tools)
-scripts/
-
 # Configuration files (local settings)
 config/
 
