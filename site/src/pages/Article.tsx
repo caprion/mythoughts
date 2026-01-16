@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown, { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Tag from '../components/Tag';
 
 // Callout type configuration
@@ -302,16 +303,17 @@ export default function Article() {
           </ReactMarkdown>
         </article>
         
-        {/* Footer */}
-        <footer className="mt-12 pt-8 border-t border-gray-200">
+        {/* Back to browse */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
           <Link 
             to="/browse" 
             className="text-purple-600 hover:text-purple-800"
           >
             ← Browse more articles
           </Link>
-        </footer>
+        </div>
       </main>
+      <Footer />
     </div>
   );
 }

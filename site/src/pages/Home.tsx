@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
 import ArticleCard from '../components/ArticleCard';
 
@@ -132,12 +133,7 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Footer */}
-      <footer className="py-8 border-t border-gray-200">
-        <div className="max-w-5xl mx-auto px-4 text-center text-sm text-gray-500">
-          <p>TimelessInsights — Your personal knowledge library</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

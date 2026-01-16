@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SisterSite from './SisterSite';
 
 export default function Header() {
   return (
@@ -10,6 +11,7 @@ export default function Header() {
         </Link>
         
         <nav className="flex items-center gap-6">
+          <SisterSite label="What I Read" url="https://timelessinsights.pages.dev/" />
           <Link 
             to="/browse" 
             className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
