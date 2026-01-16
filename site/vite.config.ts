@@ -7,7 +7,7 @@ export default defineConfig({
   root: 'site',
   publicDir: '../public',
   build: {
-    outDir: 'dist',
+    outDir: '../dist',
     emptyDirBeforeWrite: true,
   },
   resolve: {
