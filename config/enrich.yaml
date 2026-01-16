@@ -29,6 +29,7 @@ prompt: |
   Return ONLY valid JSON. No markdown. No explanation.
 
   {
+    "insight": "One powerful sentence capturing the core idea (8-15 words)",
     "summary": "Core principle in 1-2 sentences (20-50 words)",
     "highlights": ["actionable takeaway 1", "actionable takeaway 2", "actionable takeaway 3"],
     "topic": "mental-models|decision-making|learning|productivity|investing|psychology|leadership|communication",
@@ -39,18 +40,20 @@ prompt: |
   }
 
   RULES:
-  1. summary: State the mechanism, not a title restatement
-  2. highlights: Exactly 3. Each useful standalone.
-  3. topic: Pick ONE from the list
-  4. secondary_topic: Only if >30% content overlap, else null
-  5. related_concepts: 2-4 items, kebab-case
-  6. scope: Boundary condition for application
-  7. anti_pattern: Common misuse pattern
+  1. insight: Ultra-concise hook, 8-15 words, punchy and memorable
+  2. summary: State the mechanism, not a title restatement
+  3. highlights: Exactly 3. Each useful standalone.
+  4. topic: Pick ONE from the list
+  5. secondary_topic: Only if >30% content overlap, else null
+  6. related_concepts: 2-4 items, kebab-case
+  7. scope: Boundary condition for application
+  8. anti_pattern: Common misuse pattern
 
   Before responding, verify:
   - JSON is syntactically valid
   - topic matches allowed list exactly
   - highlights has exactly 3 items
+  - insight is 8-15 words
 
   ARTICLE:
   """

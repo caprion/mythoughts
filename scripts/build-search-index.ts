@@ -121,6 +121,7 @@ function main() {
       reading_time: parsed.data.reading_time,
       content: parsed.content.substring(0, 5000), // Limit content for search
       // AI-enriched fields
+      insight: parsed.data.insight,
       summary: parsed.data.summary,
       highlights: parsed.data.highlights,
       topic: parsed.data.topic,

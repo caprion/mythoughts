@@ -53,6 +53,7 @@ const SPECIFIC_FILES: string[] = filesArgIndex !== -1 && process.argv[filesArgIn
 type Topic = typeof TOPICS[number];
 
 interface EnrichmentResult {
+  insight: string;
   summary: string;
   highlights: string[];
   topic: Topic;
@@ -195,7 +196,8 @@ function validateEnrichment(enrichment: EnrichmentResult): EnrichmentResult {
   // Ensure 2-4 related concepts
   enrichment.related_concepts = (enrichment.related_concepts || []).slice(0, 4);
   
-  // Ensure scope and anti_pattern exist
+  // Ensure required fields exist
+  enrichment.insight = enrichment.insight || '';
   enrichment.scope = enrichment.scope || '';
   enrichment.anti_pattern = enrichment.anti_pattern || '';
   
@@ -226,6 +228,7 @@ async function enrichArticle(filePath: string, force: boolean = false, maxRetrie
       const enrichment = validateEnrichment(parseEnrichmentResponse(result.text));
       
       // Update frontmatter
+      parsed.data.insight = enrichment.insight;
       parsed.data.summary = enrichment.summary;
       parsed.data.highlights = enrichment.highlights;
       parsed.data.topic = enrichment.topic;
