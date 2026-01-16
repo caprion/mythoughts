@@ -92,7 +92,7 @@ function main() {
     
     const slug = file.replace('.md', '');
     const tags = parsed.data.tags || [];
-    const source = parsed.data.source || 'unknown';
+    const source = parsed.data.author || parsed.data.source || 'Sumit';
     const type = parsed.data.type || 'article';
     
     // Handle date - could be Date object or string

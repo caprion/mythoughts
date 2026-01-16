@@ -4,7 +4,7 @@
       "slug": "entropy",
       "title": "Can you win against Entropy",
       "excerpt": "In the end, you will always loose. Yep. that's the truth. You keep a block of ice long enough in a room and it would melt. And water will find its way around. It takes effort to maintain a state. And...",
-      "source": "unknown",
+      "source": "Sumit",
       "author": "Sumit",
       "date": "",
       "tags": [],
@@ -32,12 +32,12 @@
   "stats": {
     "total": 1,
     "bySource": {
-      "unknown": 1
+      "Sumit": 1
     },
     "byTag": {},
     "byType": {
       "article": 1
     }
   },
-  "generated_at": "2026-01-16T10:59:15.092Z"
+  "generated_at": "2026-01-16T11:42:49.881Z"
 }
