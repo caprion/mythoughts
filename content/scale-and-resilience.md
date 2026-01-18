@@ -1,3 +1,11 @@
+---
+title: "Scale and Resilience - Are They The Same?"
+date: 2026-01-18
+status: draft
+wip_notes: "Need to expand tech examples and add conclusion"
+tags: []
+---
+
 **Scale and Resilience. Are they same**
 
 No they aren't. They are actually different paradigms all together.
