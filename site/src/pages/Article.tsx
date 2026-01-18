@@ -102,6 +102,8 @@ interface Article {
   tags: string[];
   reading_time?: string;
   content: string;
+  status?: string;
+  wip_notes?: string;
   // AI-enriched fields
   insight?: string;
   summary?: string;
@@ -192,9 +194,26 @@ export default function Article() {
         
         {/* Article header */}
         <header className="mb-10">
-          <h1 className="font-serif text-3xl md:text-4xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-            {article.title}
-          </h1>
+          <div className="flex items-start gap-3 mb-4">
+            <h1 className="flex-1 font-serif text-3xl md:text-4xl font-semibold text-gray-900 dark:text-gray-100">
+              {article.title}
+            </h1>
+            {article.status === 'draft' && (
+              <span className="text-3xl text-amber-500 dark:text-amber-400" title="Early Draft">
+                ✏️
+              </span>
+            )}
+          </div>
+          
+          {/* WIP Notes for drafts */}
+          {article.status === 'draft' && article.wip_notes && (
+            <div className="mb-6 p-4 bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 dark:border-amber-600 rounded">
+              <div className="flex items-start gap-2">
+                <span className="text-amber-600 dark:text-amber-400 font-semibold text-sm">Work in Progress:</span>
+                <p className="text-amber-800 dark:text-amber-300 text-sm flex-1">{article.wip_notes}</p>
+              </div>
+            </div>
+          )}
           
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-stone-400 mb-6">
             {article.author && (

@@ -42,6 +42,7 @@ const PROMPT = config.prompt;
 // CLI flags
 const FORCE_ALL = process.argv.includes('--force');
 const FORCE_TRUNCATED = process.argv.includes('--force-truncated');
+const INCLUDE_DRAFTS = process.argv.includes('--include-drafts');
 const TODAY = new Date().toISOString().split('T')[0];
 
 // Parse --files flag for specific articles
@@ -208,6 +209,11 @@ async function enrichArticle(filePath: string, force: boolean = false, maxRetrie
   const content = fs.readFileSync(filePath, 'utf-8');
   const parsed = matter(content);
   
+  // Skip drafts unless --include-drafts flag is set
+  if (parsed.data.status === 'draft' && !INCLUDE_DRAFTS) {
+    return { success: false, skipped: true };
+  }
+  
   // Skip if already enriched (unless forced)
   if (parsed.data.enriched_at && !force) {
     return { success: false, skipped: true };
@@ -309,13 +315,15 @@ async function main() {
     const wasTruncated = bodyLength > OLD_CONTENT_LENGTH;
     const enrichedAt = parsed.data.enriched_at || null;
     const enrichedToday = enrichedAt === TODAY;
+    const isDraft = parsed.data.status === 'draft';
     return {
       path: f,
       name: path.basename(f, '.md'),
       enriched: !!enrichedAt,
       enrichedToday,
       wasTruncated,
-      bodyLength
+      bodyLength,
+      isDraft
     };
   });
 
@@ -324,32 +332,42 @@ async function main() {
 
   if (SPECIFIC_FILES.length > 0) {
     // Filter to only specified files, force re-enrich them
-    needsEnrichment = articleInfo
-      .filter(a => SPECIFIC_FILES.includes(a.name) || SPECIFIC_FILES.includes(a.name + '.md'))
-      .map(a => a.path);
+    let filtered = articleInfo
+      .filter(a => SPECIFIC_FILES.includes(a.name) || SPECIFIC_FILES.includes(a.name + '.md'));
+    if (!INCLUDE_DRAFTS) {
+      filtered = filtered.filter(a => !a.isDraft);
+    }
+    needsEnrichment = filtered.map(a => a.path);
     mode = 'specific';
   } else if (FORCE_ALL) {
-    needsEnrichment = files;
+    needsEnrichment = INCLUDE_DRAFTS ? files : articleInfo.filter(a => !a.isDraft).map(a => a.path);
     mode = 'force-all';
   } else if (FORCE_TRUNCATED) {
     // Skip ones already enriched today
-    needsEnrichment = articleInfo
-      .filter(a => (!a.enriched || a.wasTruncated) && !a.enrichedToday)
-      .map(a => a.path);
+    let filtered = articleInfo
+      .filter(a => (!a.enriched || a.wasTruncated) && !a.enrichedToday);
+    if (!INCLUDE_DRAFTS) {
+      filtered = filtered.filter(a => !a.isDraft);
+    }
+    needsEnrichment = filtered.map(a => a.path);
     mode = 'force-truncated';
   } else {
-    needsEnrichment = articleInfo
-      .filter(a => !a.enriched)
-      .map(a => a.path);
+    let filtered = articleInfo.filter(a => !a.enriched);
+    if (!INCLUDE_DRAFTS) {
+      filtered = filtered.filter(a => !a.isDraft);
+    }
+    needsEnrichment = filtered.map(a => a.path);
     mode = 'normal';
   }
 
   const truncatedCount = articleInfo.filter(a => a.enriched && a.wasTruncated && !a.enrichedToday).length;
   const enrichedCount = articleInfo.filter(a => a.enriched).length;
   const enrichedTodayCount = articleInfo.filter(a => a.enrichedToday).length;
+  const draftCount = articleInfo.filter(a => a.isDraft).length;
 
   console.log(`📁 Found ${files.length} articles`);
   console.log(`   Already enriched: ${enrichedCount} (${enrichedTodayCount} today)`);
+  console.log(`   Drafts: ${draftCount}${!INCLUDE_DRAFTS ? ' (skipped)' : ''}`);
   console.log(`   Still need full-content enrichment: ${truncatedCount}`);
   
   if (mode === 'specific') {

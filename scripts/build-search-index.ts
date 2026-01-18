@@ -23,6 +23,8 @@ interface Article {
   type: string;
   reading_time?: string;
   content: string; // For full-text search
+  status?: string;
+  wip_notes?: string;
   // AI-enriched fields
   summary?: string;
   highlights?: string[];
@@ -120,6 +122,8 @@ function main() {
       type,
       reading_time: parsed.data.reading_time,
       content: parsed.content.substring(0, 5000), // Limit content for search
+      status: parsed.data.status,
+      wip_notes: parsed.data.wip_notes,
       // AI-enriched fields
       insight: parsed.data.insight,
       summary: parsed.data.summary,

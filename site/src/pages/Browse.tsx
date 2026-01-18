@@ -16,6 +16,8 @@ interface Article {
   tags: string[];
   reading_time?: string;
   content: string;
+  status?: string;
+  wip_notes?: string;
 }
 
 interface SearchIndex {
@@ -32,6 +34,7 @@ export default function Browse() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [index, setIndex] = useState<SearchIndex | null>(null);
   const [loading, setLoading] = useState(true);
+  const [hideDrafts, setHideDrafts] = useState(false);
   
   const selectedTag = searchParams.get('tag') || '';
   
@@ -49,9 +52,20 @@ export default function Browse() {
   
   const filteredArticles = useMemo(() => {
     if (!index) return [];
-    if (!selectedTag) return index.articles;
-    return index.articles.filter(a => a.tags.includes(selectedTag));
-  }, [index, selectedTag]);
+    let articles = index.articles;
+    
+    // Filter by tag
+    if (selectedTag) {
+      articles = articles.filter(a => a.tags.includes(selectedTag));
+    }
+    
+    // Filter drafts if requested
+    if (hideDrafts) {
+      articles = articles.filter(a => a.status !== 'draft');
+    }
+    
+    return articles;
+  }, [index, selectedTag, hideDrafts]);
   
   const handleTagClick = (tag: string) => {
     if (tag === selectedTag) {
@@ -80,9 +94,20 @@ export default function Browse() {
           <h1 className="font-serif text-3xl font-semibold text-gray-900 dark:text-stone-100">
             Browse Articles
           </h1>
-          <span className="text-sm text-gray-500 dark:text-stone-400">
-            {filteredArticles.length} articles
-          </span>
+          <div className="flex items-center gap-4">
+            <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-stone-400 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={hideDrafts}
+                onChange={(e) => setHideDrafts(e.target.checked)}
+                className="rounded border-gray-300 dark:border-stone-600 text-purple-600 focus:ring-purple-500"
+              />
+              Hide Drafts
+            </label>
+            <span className="text-sm text-gray-500 dark:text-stone-400">
+              {filteredArticles.length} articles
+            </span>
+          </div>
         </div>
         
         {/* Search */}

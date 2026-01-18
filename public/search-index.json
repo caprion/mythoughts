@@ -10,6 +10,7 @@
       "tags": [],
       "type": "article",
       "content": "\n**In the end, you will always loose.**\n\nYep. that's the truth. You keep a block of ice long enough in a room and it would melt. And water will find its way around.\n\nIt takes effort to maintain a state. And even more to improve. Ask me, I have been trying to improve my health by running and strength training. Some years if the effort is low, I would slip back. Some years, I am able to fight back more. But there is this constant effort that I have to exert to fight back. \n\n**Life is all about trying to challenge Entropy.**\n\nAnd that is what I have learned over the years. You cannot take anything for granted. \nYour past laurels, the work that you did last year, the exercise that you did yesterday. Every day is a new day. Your past doesn't matter because Entropy will always win.\n\n\n**Keep Running**\n",
+      "status": "draft",
       "insight": "Life is a continuous struggle against entropy; constant effort is needed to maintain and improve.",
       "summary": "Entropy dictates that all systems naturally tend towards disorder and decay. Counteracting this universal force requires constant, ongoing effort to maintain existing states and achieve improvements, as past achievements do not guarantee future stability.",
       "highlights": [
@@ -27,18 +28,28 @@
       ],
       "scope": "This insight applies universally to all systems, from physical objects to personal health and professional achievements, where inaction leads to degradation.",
       "anti_pattern": "People commonly misapply this by assuming past success guarantees future stability, or that a desired state can be maintained without ongoing effort."
+    },
+    {
+      "slug": "scale-and-resilience",
+      "title": "Untitled",
+      "excerpt": "Scale and Resilience. Are they same No they aren't. They are actually different paradigms all together. But then why is this question Because there is a tendency to think they are same. Due to when...",
+      "source": "Sumit",
+      "date": "",
+      "tags": [],
+      "type": "article",
+      "content": "**Scale and Resilience. Are they same**\n\nNo they aren't. They are actually different paradigms all together.\n\n**But then why is this question**\nBecause there is a tendency to think they are same. Due to when they show up and sometimes the common solution for both. \n\nScale challenges and Resiliency problems show up almost always when systems are under load. Systems at limits, tends to expose points of failures. And additional capacities can help mitigate the symptoms for sometime but not always.\n\n<!-- COMMENT: This paragraph sets up the conflation well, but consider being more explicit about WHY capacity doesn't solve resilience: it may mask the SPOF temporarily but doesn't eliminate it. A VM scaling out doesn't help if the region fails. -->\n\n**What they really are**\nIn general - scale is \"more\". And resilience is for \"worse\".\n\n<!-- COMMENT: These definitions are compressed. Consider: Scale = handling increased volume/throughput. Resilience = continuing operation despite component failure. The tech example below will make this clearer, but upfront precision helps. -->\n\nConsider a common restaurant example. Lets consider that there is a relatively new place - which has become popular. And on a specific festival night, there is a lot of expected crowd. The owner expected and got few temporary kitchen staff for the night. That is scaling. And they have got by with that more than a few times. \n\n<!-- COMMENT: You mentioned you're more naturally a tech scale person. Consider replacing this with a VM/region example: \n- Scaling: Auto-scaling group adds instances during peak load\n- Resilience: Multi-region deployment survives when us-east-1 fails\nThe restaurant works, but if tech infrastructure is your native language, it'll be stronger and more credible. -->\n\nIn their supply chain though - they had a single dairy provider. And their truck broke today on the road. It had never happened before - the partner was wildly punctual and had standby trucks. But during festival days - they were running above limit. Eventually they couldn't serve the most demanded shakes and cheese sandwiches. That is failure to be resilient. They didn't have an alternate. And it showed up more because system was under full load. And you can say the overall region had more load which created a ripple effect.\n\n\n**Life requires balancing Scaling and Resiliency**\n\nScaling by definition allows you to do more. While Resiliency is allowing you to keep doing stuff even at some minimum pace.\nIn our above example if the restaurant had some redundancy - backup supplier, or additional stock kicked in at such times. They could have kept the restaurant running even at slightly lower capacity, till the main supplier fixes their truck and delivers a delayed shipment.\n\nOne of the best way to distinguish for me is to see what systems are more critical then others. If the system is critical - stability is more important than scale. We would love to have redundancies and scale at the same time. But we always calculate the return that we get out from it.\n\n<!-- COMMENT: Good, but you could add: the cost isn't just economic—redundancy introduces operational complexity (monitoring, failover logic, sync overhead). Also, consider mentioning failure probability as a factor: low-probability, high-impact failures often justify resilience investment even if utilization is currently low. -->\n\nThis is also so true for us humans. Life has many facets, and we decide what is critical and what is not. We need to prioritize and decide where scale is important, and what is the minimum SLA we need for which facet. Unlike machines, there is limit of redundancies and scale humans can provide.\n\n<!-- COMMENT: The human analogy you proposed makes sense conceptually: \"scaling too much at office leaves no resilience for home\" = allocating all capacity to one domain leaves no buffer for others. But this section needs concrete grounding:\n\nOption 1: Use specific examples\n- Scale at work: taking on more projects, longer hours\n- Resilience gap: when family emergency hits, you have no slack capacity (time, energy, attention)\n- The trade-off: you can't have infinite redundancy in life, so you pick where to build buffers (savings, relationships, health)\n\nOption 2: Map the technical concepts explicitly\n- Time/energy = finite capacity (like CPU/memory)\n- Oversubscription in one area = no headroom for unexpected load in another\n- Building resilience = maintaining slack capacity across critical life domains\n\nWithout this grounding, \"minimum SLA for a life facet\" reads as vague/motivational rather than analytical. If you map it clearly to the technical concepts, it becomes a genuine insight about resource allocation under constraints.\n\nQuestion: Do you want the human section to mirror the technical reasoning closely (explicit capacity/buffer mapping), or keep it looser but with concrete examples? -->\n\n\n**Pick where you should be resilient**\n\n<!-- COMMENT: This heading has no content. Either:\n1. Devel"
     }
   ],
   "tags": [],
   "stats": {
-    "total": 1,
+    "total": 2,
     "bySource": {
-      "Sumit": 1
+      "Sumit": 2
     },
     "byTag": {},
     "byType": {
-      "article": 1
+      "article": 2
     }
   },
-  "generated_at": "2026-01-16T14:00:57.465Z"
+  "generated_at": "2026-01-18T15:20:33.504Z"
 }
