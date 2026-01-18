@@ -2,7 +2,7 @@
 title: Can you win against Entropy
 date: 2026-01-16T00:00:00.000Z
 author: Sumit
-status: draft
+status: published
 tags: []
 summary: >-
   Entropy dictates that all systems naturally tend towards disorder and decay.
