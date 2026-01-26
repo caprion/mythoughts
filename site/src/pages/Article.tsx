@@ -127,14 +127,24 @@ export default function Article() {
   const [isEnrichmentExpanded, setIsEnrichmentExpanded] = useState(false);
   
   useEffect(() => {
-    // Try to find article in public index first
+    // Try to find article metadata in public index first
     fetch('/search-index.json')
       .then(res => res.json())
       .then((data: SearchIndex) => {
         const found = data.articles.find(a => a.slug === slug);
         if (found) {
-          setArticle(found);
-          setLoading(false);
+          // Found in public index - fetch full content from markdown file
+          fetch(`/content/${slug}.md`)
+            .then(res => res.text())
+            .then(markdown => {
+              setArticle({ ...found, content: markdown });
+              setLoading(false);
+            })
+            .catch(() => {
+              // Fallback to index content if markdown file not found
+              setArticle(found);
+              setLoading(false);
+            });
         } else {
           // Not in public index, try AI Lab index for hidden articles
           return fetch('/ai-lab-index.json')
@@ -142,11 +152,22 @@ export default function Article() {
             .then((aiData: SearchIndex) => {
               const hiddenFound = aiData.articles.find(a => a.slug === slug);
               if (hiddenFound) {
-                setArticle(hiddenFound);
+                // Found in AI Lab - fetch full content from markdown file
+                fetch(`/content/${slug}.md`)
+                  .then(res => res.text())
+                  .then(markdown => {
+                    setArticle({ ...hiddenFound, content: markdown });
+                    setLoading(false);
+                  })
+                  .catch(() => {
+                    // Fallback to index content if markdown file not found
+                    setArticle(hiddenFound);
+                    setLoading(false);
+                  });
               } else {
                 setNotFound(true);
+                setLoading(false);
               }
-              setLoading(false);
             });
         }
       })
@@ -157,11 +178,22 @@ export default function Article() {
           .then((aiData: SearchIndex) => {
             const hiddenFound = aiData.articles.find(a => a.slug === slug);
             if (hiddenFound) {
-              setArticle(hiddenFound);
+              // Found in AI Lab - fetch full content from markdown file
+              fetch(`/content/${slug}.md`)
+                .then(res => res.text())
+                .then(markdown => {
+                  setArticle({ ...hiddenFound, content: markdown });
+                  setLoading(false);
+                })
+                .catch(() => {
+                  // Fallback to index content if markdown file not found
+                  setArticle(hiddenFound);
+                  setLoading(false);
+                });
             } else {
               setNotFound(true);
+              setLoading(false);
             }
-            setLoading(false);
           })
           .catch(() => {
             setNotFound(true);

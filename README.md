@@ -83,6 +83,19 @@ Push to GitHub → Cloudflare Pages auto-deploys.
 - Output directory: `site/dist`
 - Environment variables: `GEMINI_API_KEY`, `GROQ_API_KEY`
 
+**Content Architecture:**
+- Source: `content/*.md` (committed to git)
+- Build: Copies to `public/content/` (gitignored)
+- Indexes: Truncated content (5KB) for search/browse
+- Article view: Fetches full markdown from `/content/{slug}.md`
+- Deployment: Both indexes and full .md files deployed to Cloudflare
+
+**Why this approach:**
+- Lighter index files (better performance for search/browse)
+- Full content available for article rendering
+- Cleaner git history (no 50KB+ JSON files)
+- Scalable for long articles
+
 ## Scripts Reference
 
 | Command | Purpose |

@@ -4,6 +4,7 @@ node_modules/
 # Build outputs
 site/dist/
 dist/
+public/content/
 
 # Environment files (NEVER commit these!)
 .env

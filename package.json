@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite --config site/vite.config.ts",
     "build": "npm run build:index && npm run build:site",
-    "build:index": "tsx scripts/build-search-index.ts && tsx scripts/build-ai-lab-index.ts",
+    "build:index": "tsx scripts/build-search-index.ts && tsx scripts/build-ai-lab-index.ts && tsx scripts/copy-content.ts",
     "build:site": "vite build --config site/vite.config.ts",
     "preview": "vite preview --config site/vite.config.ts",
     "enrich": "tsx scripts/enrich.ts",
