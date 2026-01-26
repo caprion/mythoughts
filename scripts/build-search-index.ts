@@ -128,7 +128,7 @@ function main() {
       tags,
       type,
       reading_time: parsed.data.reading_time,
-      content: parsed.content.substring(0, 5000), // Limit content for search
+      content: parsed.content.substring(0, 50000), // Limit content for search
       status: parsed.data.status,
       visibility: parsed.data.visibility || 'public',
       wip_notes: parsed.data.wip_notes,

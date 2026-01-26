@@ -87,7 +87,7 @@ function main() {
       excerpt: extractExcerpt(parsed.content),
       date: dateStr,
       tags,
-      content: parsed.content.substring(0, 5000),
+      content: parsed.content.substring(0, 50000),
       status: parsed.data.status,
       visibility: parsed.data.visibility,
       wip_notes: parsed.data.wip_notes,
