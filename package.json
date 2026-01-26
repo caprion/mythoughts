@@ -8,7 +8,8 @@
     "build:index": "tsx scripts/build-search-index.ts",
     "build:site": "vite build --config site/vite.config.ts",
     "preview": "vite preview --config site/vite.config.ts",
-    "enrich": "tsx scripts/enrich.ts"
+    "enrich": "tsx scripts/enrich.ts",
+    "review": "tsx scripts/review.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
