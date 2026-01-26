@@ -24,6 +24,7 @@ interface Article {
   reading_time?: string;
   content: string; // For full-text search
   status?: string;
+  visibility?: string;
   wip_notes?: string;
   // AI-enriched fields
   summary?: string;
@@ -92,6 +93,12 @@ function main() {
     const content = fs.readFileSync(filePath, 'utf-8');
     const parsed = matter(content);
     
+    // Skip hidden articles from public search index
+    if (parsed.data.visibility === 'hidden') {
+      console.log(`🔒 ${file.replace('.md', '')} (hidden - excluded from index)`);
+      continue;
+    }
+    
     const slug = file.replace('.md', '');
     const tags = parsed.data.tags || [];
     const source = parsed.data.author || parsed.data.source || 'Sumit';
@@ -123,6 +130,7 @@ function main() {
       reading_time: parsed.data.reading_time,
       content: parsed.content.substring(0, 5000), // Limit content for search
       status: parsed.data.status,
+      visibility: parsed.data.visibility || 'public',
       wip_notes: parsed.data.wip_notes,
       // AI-enriched fields
       insight: parsed.data.insight,

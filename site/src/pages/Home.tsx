@@ -15,6 +15,7 @@ interface Article {
   tags: string[];
   reading_time?: string;
   content: string;
+  visibility?: string;
 }
 
 interface SearchIndex {
@@ -43,7 +44,9 @@ export default function Home() {
       });
   }, []);
   
-  const recentArticles = index?.articles.slice(0, 6) || [];
+  const recentArticles = index?.articles
+    .filter(a => a.visibility !== 'hidden')
+    .slice(0, 6) || [];
   
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-stone-900">

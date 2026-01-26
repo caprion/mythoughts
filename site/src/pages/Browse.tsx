@@ -17,6 +17,7 @@ interface Article {
   reading_time?: string;
   content: string;
   status?: string;
+  visibility?: string;
   wip_notes?: string;
 }
 
@@ -53,6 +54,9 @@ export default function Browse() {
   const filteredArticles = useMemo(() => {
     if (!index) return [];
     let articles = index.articles;
+    
+    // Filter out hidden articles (always)
+    articles = articles.filter(a => a.visibility !== 'hidden');
     
     // Filter by tag
     if (selectedTag) {
