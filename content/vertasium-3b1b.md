@@ -1,5 +1,5 @@
 ---
-title: The Art of Educational Video: Lessons from 3Blue1Brown and Veritasium
+title: "The Art of Educational Video: Lessons from 3Blue1Brown and Veritasium"
 date: 2025-01-26T00:00:00.000Z
 status: published
 visibility: hidden
