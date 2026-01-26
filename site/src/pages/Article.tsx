@@ -127,20 +127,46 @@ export default function Article() {
   const [isEnrichmentExpanded, setIsEnrichmentExpanded] = useState(false);
   
   useEffect(() => {
+    // Try to find article in public index first
     fetch('/search-index.json')
       .then(res => res.json())
       .then((data: SearchIndex) => {
         const found = data.articles.find(a => a.slug === slug);
         if (found) {
           setArticle(found);
+          setLoading(false);
         } else {
-          setNotFound(true);
+          // Not in public index, try AI Lab index for hidden articles
+          return fetch('/ai-lab-index.json')
+            .then(res => res.json())
+            .then((aiData: SearchIndex) => {
+              const hiddenFound = aiData.articles.find(a => a.slug === slug);
+              if (hiddenFound) {
+                setArticle(hiddenFound);
+              } else {
+                setNotFound(true);
+              }
+              setLoading(false);
+            });
         }
-        setLoading(false);
       })
       .catch(() => {
-        setNotFound(true);
-        setLoading(false);
+        // If public index fails, try AI Lab index as fallback
+        fetch('/ai-lab-index.json')
+          .then(res => res.json())
+          .then((aiData: SearchIndex) => {
+            const hiddenFound = aiData.articles.find(a => a.slug === slug);
+            if (hiddenFound) {
+              setArticle(hiddenFound);
+            } else {
+              setNotFound(true);
+            }
+            setLoading(false);
+          })
+          .catch(() => {
+            setNotFound(true);
+            setLoading(false);
+          });
       });
   }, [slug]);
   
