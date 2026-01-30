@@ -10,8 +10,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-stone-950/95 backdrop-blur border-b border-gray-100 dark:border-stone-800">
       <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-2xl font-serif italic text-purple-700 dark:text-purple-400">mt</span>
-          <span className="text-lg font-medium text-gray-900 dark:text-stone-200">mythoughts</span>
+          <span className="text-2xl font-serif italic text-purple-700 dark:text-purple-400">ae</span>
+          <span className="text-lg font-medium text-gray-900 dark:text-stone-200">against entropy</span>
         </Link>
         
         <nav className="flex items-center gap-6">
