@@ -4,6 +4,7 @@ date: 2026-01-16T00:00:00.000Z
 author: Sumit
 status: published
 tags: []
+type: thoughts
 summary: >-
   Entropy dictates that all systems naturally tend towards disorder and decay.
   Counteracting this universal force requires constant, ongoing effort to

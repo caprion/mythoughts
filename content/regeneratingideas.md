@@ -5,6 +5,7 @@ author: Sumit
 status: published
 wip_notes: ''
 tags: []
+type: thoughts
 ---
 
 Is connection everything?

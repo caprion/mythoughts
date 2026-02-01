@@ -19,6 +19,7 @@ interface Article {
   status?: string;
   visibility?: string;
   wip_notes?: string;
+  type?: string;
 }
 
 interface SearchIndex {
@@ -27,8 +28,11 @@ interface SearchIndex {
   stats: {
     total: number;
     byTag: Record<string, number>;
+    byType?: Record<string, number>;
   };
 }
+
+type ArticleType = 'all' | 'technical' | 'thoughts';
 
 export default function Browse() {
   const navigate = useNavigate();
@@ -38,6 +42,7 @@ export default function Browse() {
   const [hideDrafts, setHideDrafts] = useState(false);
   
   const selectedTag = searchParams.get('tag') || '';
+  const selectedType = (searchParams.get('type') || 'all') as ArticleType;
   
   useEffect(() => {
     fetch('/search-index.json')
@@ -58,6 +63,19 @@ export default function Browse() {
     // Filter out hidden articles (always)
     articles = articles.filter(a => a.visibility !== 'hidden');
     
+    // Filter by type
+    if (selectedType !== 'all') {
+      const typeMap: Record<string, ArticleType> = {
+        'technical': 'technical',
+        'thoughts': 'thoughts',
+        'article': 'thoughts', // Default old articles to thoughts
+      };
+      articles = articles.filter(a => {
+        const articleType = typeMap[a.type || 'article'] || 'thoughts';
+        return articleType === selectedType;
+      });
+    }
+    
     // Filter by tag
     if (selectedTag) {
       articles = articles.filter(a => a.tags.includes(selectedTag));
@@ -69,7 +87,16 @@ export default function Browse() {
     }
     
     return articles;
-  }, [index, selectedTag, hideDrafts]);
+  }, [index, selectedType, selectedTag, hideDrafts]);
+  
+  const handleTypeChange = (type: ArticleType) => {
+    if (type === 'all') {
+      searchParams.delete('type');
+    } else {
+      searchParams.set('type', type);
+    }
+    setSearchParams(searchParams);
+  };
   
   const handleTagClick = (tag: string) => {
     if (tag === selectedTag) {
@@ -93,9 +120,9 @@ export default function Browse() {
     <div className="min-h-screen bg-gray-50 dark:bg-stone-900">
       <Header />
       
-      <main className="max-w-5xl mx-auto px-4 py-12">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="font-serif text-3xl font-semibold text-gray-900 dark:text-stone-100">
+      <main className="max-w-5xl mx-auto px-4 py-6">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="font-serif text-2xl md:text-3xl font-semibold text-gray-900 dark:text-stone-100">
             Browse Articles
           </h1>
           <div className="flex items-center gap-4">
@@ -114,9 +141,29 @@ export default function Browse() {
           </div>
         </div>
         
+        {/* Type Filter Tabs */}
+        <div className="mb-4 flex gap-2 border-b border-gray-200 dark:border-stone-700">
+          {(['all', 'technical', 'thoughts'] as ArticleType[]).map((type) => (
+            <button
+              key={type}
+              onClick={() => handleTypeChange(type)}
+              className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                selectedType === type
+                  ? 'border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400'
+                  : 'border-transparent text-gray-600 dark:text-stone-400 hover:text-gray-900 dark:hover:text-stone-200'
+              }`}
+            >
+              {type === 'all' ? 'All' : type === 'technical' ? 'Technical' : 'Thoughts'}
+              {index?.stats.byType && index.stats.byType[type] !== undefined && (
+                <span className="ml-2 text-xs opacity-70">({index.stats.byType[type]})</span>
+              )}
+            </button>
+          ))}
+        </div>
+        
         {/* Search */}
         {index && (
-          <div className="mb-8">
+          <div className="mb-6">
             <SearchBar 
               articles={index.articles}
               onSelect={(slug) => navigate(`/article/${slug}`)}
@@ -127,7 +174,7 @@ export default function Browse() {
         
         {/* Tags */}
         {popularTags.length > 0 && (
-          <div className="mb-8">
+          <div className="mb-6">
             <div className="flex flex-wrap gap-2">
               {popularTags.map(({ tag, count }) => (
                 <Tag 

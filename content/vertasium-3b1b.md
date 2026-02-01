@@ -5,6 +5,7 @@ status: published
 visibility: hidden
 tags: []
 source: brainstorm-with-ai
+type: thoughts
 ---
 
 # The Art of Educational Video: Lessons from 3Blue1Brown and Veritasium

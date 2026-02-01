@@ -8,6 +8,7 @@ tags:
   - creativity
   - learning
   - process
+type: thoughts
 source: brainstorm-with-ai
 ---
 

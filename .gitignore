@@ -32,3 +32,4 @@ npm-debug.log*
 # Local utility scripts and docs
 scripts/sync-to-timelessinsights.ps1
 docs/SHARED_COMPONENTS.md
+docs/CONTENT_STRATEGY.md
