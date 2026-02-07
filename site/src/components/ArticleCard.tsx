@@ -23,7 +23,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   const articleType = article.type || 'article';
   const typeMap: Record<string, { label: string; className: string }> = {
     'technical': { label: 'Technical', className: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' },
-    'thoughts': { label: 'Thoughts', className: 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300' },
+    'thoughts': { label: 'Thoughts', className: 'bg-accent-100 dark:bg-stone-700 text-accent-700 dark:text-accent-300' },
     'article': { label: 'Article', className: 'bg-gray-100 dark:bg-stone-700 text-gray-700 dark:text-stone-300' },
   };
   const typeInfo = typeMap[articleType] || typeMap['article'];
@@ -31,10 +31,10 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <Link 
       to={`/article/${article.slug}`}
-      className="block p-6 bg-white dark:bg-stone-800 rounded-xl border border-gray-100 dark:border-stone-700 hover:border-purple-200 dark:hover:border-purple-600 hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-black/20 transition-all group"
+      className="block p-6 bg-white dark:bg-stone-800 rounded-xl border border-gray-100 dark:border-stone-700 hover:border-accent-200 dark:hover:border-accent-600 hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-black/20 transition-all group"
     >
       <div className="flex items-start gap-3 mb-2">
-        <h3 className="flex-1 font-serif text-xl font-semibold text-gray-900 dark:text-stone-100 group-hover:text-purple-700 dark:group-hover:text-purple-400 transition-colors">
+        <h3 className="flex-1 font-serif text-xl font-semibold text-gray-900 dark:text-stone-100 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
           {article.title}
         </h3>
         <div className="flex items-center gap-2 flex-shrink-0">

@@ -229,7 +229,7 @@ export default function Article() {
           <h1 className="font-serif text-2xl font-semibold text-gray-900 dark:text-stone-100 mb-4">
             Article not found
           </h1>
-          <Link to="/browse" className="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300">
+          <Link to="/browse" className="text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300">
             ← Back to browse
           </Link>
         </main>
@@ -285,7 +285,7 @@ export default function Article() {
                 href={article.source_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300"
+                className="text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300"
               >
                 View original ↗
               </a>
@@ -308,14 +308,14 @@ export default function Article() {
           <div className="mb-10">
             <button
               onClick={() => setIsEnrichmentExpanded(!isEnrichmentExpanded)}
-              className="w-full text-left p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
+              className="w-full text-left p-4 bg-amber-50 dark:bg-stone-800 rounded-lg border border-earth-border dark:border-stone-700 hover:bg-amber-100 dark:hover:bg-stone-700 transition-colors"
             >
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-purple-900 dark:text-purple-300">
+                <span className="font-semibold text-earth-text dark:text-stone-300">
                   AI's Take
                 </span>
                 <svg 
-                  className={`w-5 h-5 text-purple-600 dark:text-purple-400 transition-transform ${isEnrichmentExpanded ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 text-accent-600 dark:text-accent-400 transition-transform ${isEnrichmentExpanded ? 'rotate-180' : ''}`}
                   fill="none" 
                   strokeLinecap="round" 
                   strokeLinejoin="round" 
@@ -334,10 +334,10 @@ export default function Article() {
             </button>
             
             {isEnrichmentExpanded && (
-              <div className="mt-2 p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800">
+              <div className="mt-2 p-6 bg-amber-50 dark:bg-stone-800 rounded-lg border border-earth-border dark:border-stone-700">
                 {article.summary && (
                   <div className="mb-4">
-                    <h2 className="text-sm font-semibold text-purple-900 dark:text-purple-300 uppercase tracking-wide mb-2">
+                    <h2 className="text-sm font-semibold text-earth-text dark:text-stone-300 uppercase tracking-wide mb-2">
                       TL;DR
                     </h2>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -348,13 +348,13 @@ export default function Article() {
                 
                 {article.highlights && article.highlights.length > 0 && (
                   <div className="mb-4">
-                    <h2 className="text-sm font-semibold text-purple-900 dark:text-purple-300 uppercase tracking-wide mb-2">
+                    <h2 className="text-sm font-semibold text-earth-text dark:text-stone-300 uppercase tracking-wide mb-2">
                       Key Takeaways
                     </h2>
                     <ul className="space-y-2">
                       {article.highlights.map((highlight, index) => (
                         <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                          <span className="text-purple-500 dark:text-purple-400 mt-1">•</span>
+                          <span className="text-accent-500 dark:text-accent-400 mt-1">•</span>
                           <span>{highlight}</span>
                         </li>
                       ))}
@@ -364,7 +364,7 @@ export default function Article() {
                 
                 {/* When to Use / When NOT to Use */}
                 {(article.scope || article.anti_pattern) && (
-                  <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-purple-200 dark:border-purple-800">
+                  <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-earth-border dark:border-stone-700">
                     {article.scope && (
                       <div>
                         <h3 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-1">✓ When to Use</h3>
@@ -382,13 +382,13 @@ export default function Article() {
                 
                 {/* Related Concepts */}
                 {article.related_concepts && article.related_concepts.length > 0 && (
-                  <div className="pt-4 border-t border-purple-200 dark:border-purple-800 mt-4">
-                    <h3 className="text-sm font-semibold text-purple-900 dark:text-purple-300 mb-2">Related Concepts</h3>
+                  <div className="pt-4 border-t border-earth-border dark:border-stone-700 mt-4">
+                    <h3 className="text-sm font-semibold text-earth-text dark:text-stone-300 mb-2">Related Concepts</h3>
                     <div className="flex flex-wrap gap-2">
                       {article.related_concepts.map((concept) => (
                         <span 
                           key={concept}
-                          className="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-full"
+                          className="text-xs px-2 py-1 bg-accent-100 dark:bg-stone-700 text-accent-700 dark:text-accent-400 rounded-full"
                         >
                           {concept}
                         </span>
@@ -417,7 +417,7 @@ export default function Article() {
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
           <Link 
             to="/browse" 
-            className="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300"
+            className="text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300"
           >
             ← Browse more articles
           </Link>

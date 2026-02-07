@@ -131,7 +131,7 @@ export default function Browse() {
                 type="checkbox"
                 checked={hideDrafts}
                 onChange={(e) => setHideDrafts(e.target.checked)}
-                className="rounded border-gray-300 dark:border-stone-600 text-purple-600 focus:ring-purple-500"
+                className="rounded border-gray-300 dark:border-stone-600 text-accent-600 focus:ring-accent-500"
               />
               Hide Drafts
             </label>
@@ -149,7 +149,7 @@ export default function Browse() {
               onClick={() => handleTypeChange(type)}
               className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
                 selectedType === type
-                  ? 'border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400'
+                  ? 'border-accent-600 dark:border-accent-400 text-accent-600 dark:text-accent-400'
                   : 'border-transparent text-gray-600 dark:text-stone-400 hover:text-gray-900 dark:hover:text-stone-200'
               }`}
             >

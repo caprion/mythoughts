@@ -72,7 +72,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-6">
             <div className="flex-1">
-              <p className="text-sm uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2">
+              <p className="text-sm uppercase tracking-widest text-accent-600 dark:text-accent-400 mb-2">
                 Personal Blog
               </p>
               <p className="text-lg text-gray-600 dark:text-stone-300">
@@ -96,7 +96,7 @@ export default function Home() {
                     )}
                     {index.stats.byType.thoughts > 0 && (
                       <div>
-                        <span className="font-semibold text-purple-600 dark:text-purple-400">{index.stats.byType.thoughts}</span> thoughts
+                        <span className="font-semibold text-accent-600 dark:text-accent-400">{index.stats.byType.thoughts}</span> thoughts
                       </div>
                     )}
                   </>
@@ -155,7 +155,7 @@ export default function Home() {
                   </h2>
                   <button 
                     onClick={() => navigate('/browse?type=thoughts')}
-                    className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300"
+                    className="text-sm font-medium text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300"
                   >
                     View all →
                   </button>
@@ -178,7 +178,7 @@ export default function Home() {
               </h2>
               <button 
                 onClick={() => navigate('/browse')}
-                className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300"
+                className="text-sm font-medium text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300"
               >
                 View all →
               </button>
