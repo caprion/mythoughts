@@ -204,16 +204,16 @@ export default function Article() {
   
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-stone-900">
+      <div className="min-h-screen bg-gray-50">
         <Header />
         <main className="max-w-3xl mx-auto px-4 py-12">
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 dark:bg-stone-700 rounded w-3/4 mb-4"></div>
-            <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded w-1/4 mb-8"></div>
+            <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
+            <div className="h-4 bg-gray-100 rounded w-1/4 mb-8"></div>
             <div className="space-y-4">
-              <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded"></div>
-              <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded"></div>
-              <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded w-5/6"></div>
+              <div className="h-4 bg-gray-100 rounded"></div>
+              <div className="h-4 bg-gray-100 rounded"></div>
+              <div className="h-4 bg-gray-100 rounded w-5/6"></div>
             </div>
           </div>
         </main>
@@ -223,13 +223,13 @@ export default function Article() {
   
   if (notFound || !article) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-stone-900">
+      <div className="min-h-screen bg-gray-50">
         <Header />
         <main className="max-w-3xl mx-auto px-4 py-12 text-center">
-          <h1 className="font-serif text-2xl font-semibold text-gray-900 dark:text-stone-100 mb-4">
+          <h1 className="font-serif text-2xl font-semibold text-gray-900 mb-4">
             Article not found
           </h1>
-          <Link to="/browse" className="text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300">
+          <Link to="/browse" className="text-accent-600 hover:text-accent-800">
             ← Back to browse
           </Link>
         </main>
@@ -238,14 +238,14 @@ export default function Article() {
   }
   
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-stone-900">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
       <main className="max-w-3xl mx-auto px-4 py-12">
         {/* Back link */}
         <Link 
           to="/browse" 
-          className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-stone-400 hover:text-gray-700 dark:hover:text-stone-300 mb-8"
+          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 mb-8"
         >
           ← Back to articles
         </Link>
@@ -253,11 +253,11 @@ export default function Article() {
         {/* Article header */}
         <header className="mb-10">
           <div className="flex items-start gap-3 mb-4">
-            <h1 className="flex-1 font-serif text-3xl md:text-4xl font-semibold text-gray-900 dark:text-gray-100">
+            <h1 className="flex-1 font-serif text-3xl md:text-4xl font-semibold text-gray-900">
               {article.title}
             </h1>
             {article.status === 'draft' && (
-              <span className="text-3xl text-amber-500 dark:text-amber-400" title="Early Draft">
+              <span className="text-3xl text-amber-500" title="Early Draft">
                 ✏️
               </span>
             )}
@@ -265,15 +265,15 @@ export default function Article() {
           
           {/* WIP Notes for drafts */}
           {article.status === 'draft' && article.wip_notes && (
-            <div className="mb-6 p-4 bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 dark:border-amber-600 rounded">
+            <div className="mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded">
               <div className="flex items-start gap-2">
-                <span className="text-amber-600 dark:text-amber-400 font-semibold text-sm">Work in Progress:</span>
-                <p className="text-amber-800 dark:text-amber-300 text-sm flex-1">{article.wip_notes}</p>
+                <span className="text-amber-600 font-semibold text-sm">Work in Progress:</span>
+                <p className="text-amber-800 text-sm flex-1">{article.wip_notes}</p>
               </div>
             </div>
           )}
           
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-stone-400 mb-6">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
             {article.author && (
               <span>By {article.author}</span>
             )}
@@ -285,7 +285,7 @@ export default function Article() {
                 href={article.source_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300"
+                className="text-accent-600 hover:text-accent-800"
               >
                 View original ↗
               </a>
@@ -308,14 +308,14 @@ export default function Article() {
           <div className="mb-10">
             <button
               onClick={() => setIsEnrichmentExpanded(!isEnrichmentExpanded)}
-              className="w-full text-left p-4 bg-amber-50 dark:bg-stone-800 rounded-lg border border-earth-border dark:border-stone-700 hover:bg-amber-100 dark:hover:bg-stone-700 transition-colors"
+              className="w-full text-left p-4 bg-amber-50 rounded-lg border border-earth-border hover:bg-amber-100 transition-colors"
             >
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-earth-text dark:text-stone-300">
+                <span className="font-semibold text-earth-text">
                   AI's Take
                 </span>
                 <svg 
-                  className={`w-5 h-5 text-accent-600 dark:text-accent-400 transition-transform ${isEnrichmentExpanded ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 text-accent-600 transition-transform ${isEnrichmentExpanded ? 'rotate-180' : ''}`}
                   fill="none" 
                   strokeLinecap="round" 
                   strokeLinejoin="round" 
@@ -327,20 +327,20 @@ export default function Article() {
                 </svg>
               </div>
               {!isEnrichmentExpanded && article.insight && (
-                <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm italic">
+                <p className="mt-2 text-gray-700 text-sm italic">
                   {article.insight}
                 </p>
               )}
             </button>
             
             {isEnrichmentExpanded && (
-              <div className="mt-2 p-6 bg-amber-50 dark:bg-stone-800 rounded-lg border border-earth-border dark:border-stone-700">
+              <div className="mt-2 p-6 bg-amber-50 rounded-lg border border-earth-border">
                 {article.summary && (
                   <div className="mb-4">
-                    <h2 className="text-sm font-semibold text-earth-text dark:text-stone-300 uppercase tracking-wide mb-2">
+                    <h2 className="text-sm font-semibold text-earth-text uppercase tracking-wide mb-2">
                       TL;DR
                     </h2>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p className="text-gray-700 leading-relaxed">
                       {article.summary}
                     </p>
                   </div>
@@ -348,13 +348,13 @@ export default function Article() {
                 
                 {article.highlights && article.highlights.length > 0 && (
                   <div className="mb-4">
-                    <h2 className="text-sm font-semibold text-earth-text dark:text-stone-300 uppercase tracking-wide mb-2">
+                    <h2 className="text-sm font-semibold text-earth-text uppercase tracking-wide mb-2">
                       Key Takeaways
                     </h2>
                     <ul className="space-y-2">
                       {article.highlights.map((highlight, index) => (
-                        <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                          <span className="text-accent-500 dark:text-accent-400 mt-1">•</span>
+                        <li key={index} className="flex items-start gap-2 text-gray-700">
+                          <span className="text-accent-500 mt-1">•</span>
                           <span>{highlight}</span>
                         </li>
                       ))}
@@ -364,17 +364,17 @@ export default function Article() {
                 
                 {/* When to Use / When NOT to Use */}
                 {(article.scope || article.anti_pattern) && (
-                  <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-earth-border dark:border-stone-700">
+                  <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-earth-border">
                     {article.scope && (
                       <div>
-                        <h3 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-1">✓ When to Use</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{article.scope}</p>
+                        <h3 className="text-sm font-semibold text-green-700 mb-1">✓ When to Use</h3>
+                        <p className="text-sm text-gray-600">{article.scope}</p>
                       </div>
                     )}
                     {article.anti_pattern && (
                       <div>
-                        <h3 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-1">✗ Common Mistake</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{article.anti_pattern}</p>
+                        <h3 className="text-sm font-semibold text-red-700 mb-1">✗ Common Mistake</h3>
+                        <p className="text-sm text-gray-600">{article.anti_pattern}</p>
                       </div>
                     )}
                   </div>
@@ -382,13 +382,13 @@ export default function Article() {
                 
                 {/* Related Concepts */}
                 {article.related_concepts && article.related_concepts.length > 0 && (
-                  <div className="pt-4 border-t border-earth-border dark:border-stone-700 mt-4">
-                    <h3 className="text-sm font-semibold text-earth-text dark:text-stone-300 mb-2">Related Concepts</h3>
+                  <div className="pt-4 border-t border-earth-border mt-4">
+                    <h3 className="text-sm font-semibold text-earth-text mb-2">Related Concepts</h3>
                     <div className="flex flex-wrap gap-2">
                       {article.related_concepts.map((concept) => (
                         <span 
                           key={concept}
-                          className="text-xs px-2 py-1 bg-accent-100 dark:bg-stone-700 text-accent-700 dark:text-accent-400 rounded-full"
+                          className="text-xs px-2 py-1 bg-accent-100 text-accent-700 rounded-full"
                         >
                           {concept}
                         </span>
@@ -414,10 +414,10 @@ export default function Article() {
         </article>
         
         {/* Back to browse */}
-        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+        <div className="mt-12 pt-8 border-t border-gray-200">
           <Link 
             to="/browse" 
-            className="text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300"
+            className="text-accent-600 hover:text-accent-800"
           >
             ← Browse more articles
           </Link>

@@ -117,40 +117,40 @@ export default function Browse() {
   }, [index]);
   
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-stone-900">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
       <main className="max-w-5xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="font-serif text-2xl md:text-3xl font-semibold text-gray-900 dark:text-stone-100">
+          <h1 className="font-serif text-2xl md:text-3xl font-semibold text-gray-900">
             Browse Articles
           </h1>
           <div className="flex items-center gap-4">
-            <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-stone-400 cursor-pointer">
+            <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
               <input
                 type="checkbox"
                 checked={hideDrafts}
                 onChange={(e) => setHideDrafts(e.target.checked)}
-                className="rounded border-gray-300 dark:border-stone-600 text-accent-600 focus:ring-accent-500"
+                className="rounded border-gray-300 text-accent-600 focus:ring-accent-500"
               />
               Hide Drafts
             </label>
-            <span className="text-sm text-gray-500 dark:text-stone-400">
+            <span className="text-sm text-gray-500">
               {filteredArticles.length} articles
             </span>
           </div>
         </div>
         
         {/* Type Filter Tabs */}
-        <div className="mb-4 flex gap-2 border-b border-gray-200 dark:border-stone-700">
+        <div className="mb-4 flex gap-2 border-b border-gray-200">
           {(['all', 'technical', 'thoughts'] as ArticleType[]).map((type) => (
             <button
               key={type}
               onClick={() => handleTypeChange(type)}
               className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
                 selectedType === type
-                  ? 'border-accent-600 dark:border-accent-400 text-accent-600 dark:text-accent-400'
-                  : 'border-transparent text-gray-600 dark:text-stone-400 hover:text-gray-900 dark:hover:text-stone-200'
+                  ? 'border-accent-600 text-accent-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
               }`}
             >
               {type === 'all' ? 'All' : type === 'technical' ? 'Technical' : 'Thoughts'}
@@ -201,10 +201,10 @@ export default function Browse() {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="p-6 bg-white dark:bg-stone-800 rounded-xl border border-gray-100 dark:border-stone-700 animate-pulse">
-                <div className="h-6 bg-gray-200 dark:bg-stone-700 rounded w-3/4 mb-3"></div>
-                <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded w-full mb-2"></div>
-                <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded w-5/6"></div>
+              <div key={i} className="p-6 bg-white rounded-xl border border-gray-100 animate-pulse">
+                <div className="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
+                <div className="h-4 bg-gray-100 rounded w-full mb-2"></div>
+                <div className="h-4 bg-gray-100 rounded w-5/6"></div>
               </div>
             ))}
           </div>
@@ -215,7 +215,7 @@ export default function Browse() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-gray-500 dark:text-stone-400">
+          <div className="text-center py-12 text-gray-500">
             <p>No articles found{selectedTag ? ` for tag "${selectedTag}"` : ''}.</p>
           </div>
         )}

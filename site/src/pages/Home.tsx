@@ -64,39 +64,39 @@ export default function Home() {
   const recentArticles = allPublicArticles.slice(0, 6);
   
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-stone-900">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
       {/* Hero + Stats Combined */}
-      <section className="pt-8 pb-6 border-b border-gray-200 dark:border-stone-800 bg-white dark:bg-stone-900">
+      <section className="pt-8 pb-6 border-b border-gray-200 bg-white">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-6">
             <div className="flex-1">
-              <p className="text-sm uppercase tracking-widest text-accent-600 dark:text-accent-400 mb-2">
+              <p className="text-sm uppercase tracking-widest text-accent-600 mb-2">
                 Personal Blog
               </p>
-              <p className="text-lg text-gray-600 dark:text-stone-300">
+              <p className="text-lg text-gray-600">
                 Ideas, reflections, and technical insights on systems at scale.
               </p>
             </div>
             {index && (
-              <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-stone-400 flex-shrink-0">
+              <div className="flex items-center gap-6 text-sm text-gray-500 flex-shrink-0">
                 <div>
-                  <span className="font-semibold text-gray-900 dark:text-stone-200">{index.stats.total}</span> articles
+                  <span className="font-semibold text-gray-900">{index.stats.total}</span> articles
                 </div>
                 <div>
-                  <span className="font-semibold text-gray-900 dark:text-stone-200">{index.tags.length}</span> tags
+                  <span className="font-semibold text-gray-900">{index.tags.length}</span> tags
                 </div>
                 {index.stats.byType && (
                   <>
                     {index.stats.byType.technical > 0 && (
                       <div>
-                        <span className="font-semibold text-blue-600 dark:text-blue-400">{index.stats.byType.technical}</span> technical
+                        <span className="font-semibold text-blue-600">{index.stats.byType.technical}</span> technical
                       </div>
                     )}
                     {index.stats.byType.thoughts > 0 && (
                       <div>
-                        <span className="font-semibold text-accent-600 dark:text-accent-400">{index.stats.byType.thoughts}</span> thoughts
+                        <span className="font-semibold text-accent-600">{index.stats.byType.thoughts}</span> thoughts
                       </div>
                     )}
                   </>
@@ -126,12 +126,12 @@ export default function Home() {
             <section className="py-8">
               <div className="max-w-5xl mx-auto px-4">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="font-serif text-xl md:text-2xl font-semibold text-gray-900 dark:text-stone-100">
+                  <h2 className="font-serif text-xl md:text-2xl font-semibold text-gray-900">
                     Technical Insights
                   </h2>
                   <button 
                     onClick={() => navigate('/browse?type=technical')}
-                    className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    className="text-sm font-medium text-blue-600 hover:text-blue-800"
                   >
                     View all →
                   </button>
@@ -147,15 +147,15 @@ export default function Home() {
           
           {/* Thoughts Articles */}
           {thoughtsArticles.length > 0 && (
-            <section className="py-8 border-t border-gray-200 dark:border-stone-800">
+            <section className="py-8 border-t border-gray-200">
               <div className="max-w-5xl mx-auto px-4">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="font-serif text-xl md:text-2xl font-semibold text-gray-900 dark:text-stone-100">
+                  <h2 className="font-serif text-xl md:text-2xl font-semibold text-gray-900">
                     Thoughts & Reflections
                   </h2>
                   <button 
                     onClick={() => navigate('/browse?type=thoughts')}
-                    className="text-sm font-medium text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300"
+                    className="text-sm font-medium text-accent-600 hover:text-accent-800"
                   >
                     View all →
                   </button>
@@ -173,12 +173,12 @@ export default function Home() {
         <section className="py-8">
           <div className="max-w-5xl mx-auto px-4">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-serif text-xl md:text-2xl font-semibold text-gray-900 dark:text-stone-100">
+              <h2 className="font-serif text-xl md:text-2xl font-semibold text-gray-900">
                 Recent Articles
               </h2>
               <button 
                 onClick={() => navigate('/browse')}
-                className="text-sm font-medium text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-300"
+                className="text-sm font-medium text-accent-600 hover:text-accent-800"
               >
                 View all →
               </button>
@@ -187,10 +187,10 @@ export default function Home() {
             {loading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[1, 2, 3].map(i => (
-                  <div key={i} className="p-6 bg-white dark:bg-stone-800 rounded-xl border border-gray-100 dark:border-stone-700 animate-pulse">
-                    <div className="h-6 bg-gray-200 dark:bg-stone-700 rounded w-3/4 mb-3"></div>
-                    <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded w-full mb-2"></div>
-                    <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded w-5/6"></div>
+                  <div key={i} className="p-6 bg-white rounded-xl border border-gray-100 animate-pulse">
+                    <div className="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
+                    <div className="h-4 bg-gray-100 rounded w-full mb-2"></div>
+                    <div className="h-4 bg-gray-100 rounded w-5/6"></div>
                   </div>
                 ))}
               </div>
@@ -201,9 +201,9 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+              <div className="text-center py-12 text-gray-500">
                 <p className="mb-4">No articles yet.</p>
-                <p className="text-sm">Add URLs to <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">input/urls.txt</code> and run <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">npm run scrape</code></p>
+                <p className="text-sm">Add URLs to <code className="bg-gray-100 px-2 py-1 rounded">input/urls.txt</code> and run <code className="bg-gray-100 px-2 py-1 rounded">npm run scrape</code></p>
               </div>
             )}
           </div>

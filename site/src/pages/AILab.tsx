@@ -44,23 +44,23 @@ export default function AILab() {
   const hiddenArticles = allArticles;
   
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-stone-900">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
       <main className="max-w-5xl mx-auto px-4 py-12">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-3">
             <span className="text-3xl">🔬</span>
-            <h1 className="font-serif text-3xl font-semibold text-gray-900 dark:text-stone-100">
+            <h1 className="font-serif text-3xl font-semibold text-gray-900">
               AI Lab
             </h1>
           </div>
-          <p className="text-gray-600 dark:text-stone-400">
+          <p className="text-gray-600">
             Private brainstorms and AI-assisted explorations. For personal reference only.
           </p>
         </div>
         
-        <div className="mb-6 text-sm text-gray-500 dark:text-stone-400">
+        <div className="mb-6 text-sm text-gray-500">
           {loading ? 'Loading...' : `${hiddenArticles.length} brainstorm${hiddenArticles.length !== 1 ? 's' : ''} found`}
         </div>
         
@@ -68,10 +68,10 @@ export default function AILab() {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="p-6 bg-white dark:bg-stone-800 rounded-xl border border-gray-100 dark:border-stone-700 animate-pulse">
-                <div className="h-6 bg-gray-200 dark:bg-stone-700 rounded w-3/4 mb-3"></div>
-                <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded w-full mb-2"></div>
-                <div className="h-4 bg-gray-100 dark:bg-stone-700 rounded w-5/6"></div>
+              <div key={i} className="p-6 bg-white rounded-xl border border-gray-100 animate-pulse">
+                <div className="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
+                <div className="h-4 bg-gray-100 rounded w-full mb-2"></div>
+                <div className="h-4 bg-gray-100 rounded w-5/6"></div>
               </div>
             ))}
           </div>
@@ -82,15 +82,15 @@ export default function AILab() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-gray-500 dark:text-stone-400 bg-white dark:bg-stone-800 rounded-xl border border-gray-100 dark:border-stone-700">
+          <div className="text-center py-12 text-gray-500 bg-white rounded-xl border border-gray-100">
             <p className="mb-2">No hidden brainstorms yet.</p>
-            <p className="text-sm">Add articles with <code className="px-2 py-1 bg-gray-100 dark:bg-stone-700 rounded">visibility: hidden</code> to see them here.</p>
+            <p className="text-sm">Add articles with <code className="px-2 py-1 bg-gray-100 rounded">visibility: hidden</code> to see them here.</p>
           </div>
         )}
         
         {!loading && hiddenArticles.length > 0 && (
-          <div className="mt-8 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
-            <div className="flex gap-2 text-sm text-amber-800 dark:text-amber-200">
+          <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <div className="flex gap-2 text-sm text-amber-800">
               <span>💡</span>
               <div>
                 <strong>Note:</strong> These articles are excluded from public search and browse pages, 
